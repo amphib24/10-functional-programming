@@ -1,12 +1,13 @@
 'use strict';
 
-// TODO: Wrap the entire contents of this file in an IIFE.
+// DONE: Wrap the entire contents of this file in an IIFE.
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
-var articleView = {};
+ (function(module){
+   var articleView = {};
 
-articleView.populateFilters = function() {
-  $('article').each(function() {
-    if (!$(this).hasClass('template')) {
+   articleView.populateFilters = function() {
+     $('article').each(function() {
+       if  (!$(this).hasClass('template')) {
       var val = $(this).find('address a').text();
       var optionTag = `<option value="${val}">${val}</option>`;
 
@@ -117,5 +118,6 @@ articleView.initAdminPage = function() {
 
   // REVIEW: Simply write the correct values to the page:
   $('#blog-stats .articles').text(Article.all.length);
-  $('#blog-stats .words').text(Article.numWordsAll());
+  $('#blog-stats     .words').text(Article.numWordsAll());
 };
+ })(jQuery,window);

@@ -2,9 +2,10 @@
 
 // REVIEW: Check out all of the functions that we've cleaned up with arrow function syntax.
 
-// TODO: Wrap the entire contents of this file in an IIFE.
-// Pass in to the IIFE a module, upon which objects can be attached for later access.
 
+// DONE: Wrap the entire contents of this file in an IIFE.
+// Pass in to the IIFE a module, upon which objects can be attached for later access.
+ (function(module){
 function Article(opts) {
   // REVIEW: Lets review what's actually happening here, and check out some new syntax!!
   Object.keys(opts).forEach(e => this[e] = opts[e]);
@@ -33,7 +34,9 @@ Article.loadAll = rows => {
     Article.all.push(new Article(ele));
   });
   */
-
+function articleArray(rawData){
+  return Article.all.map(function(ele){return new Article(ele)});
+}
 };
 
 Article.fetchAll = callback => {
@@ -122,3 +125,4 @@ Article.prototype.updateRecord = function(callback) {
     .then(console.log)
     .then(callback);
   };
+})(jQuery,window);
